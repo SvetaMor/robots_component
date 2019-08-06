@@ -1,19 +1,20 @@
 <?php
+namespace svetamor\robots;
 
-namespace app\components\robots;
+use svetamor\robots\interfaces\ICreatingFile;
 
-use yii\base\BaseObject;
-
-class RobotsComponent extends BaseObject
+class RobotsComponent
 {
     public $userAgent;
     public $host;
     public $sitemap;
-    public $result;
     
-    public function init()
+    protected $result;
+    protected $newFile;
+    
+    public function __construct(ICreatingFile $newFile)
     {
-        parent::init();
+        $this->newFile = $newFile; 
     }
     
     public function render()
@@ -31,16 +32,9 @@ class RobotsComponent extends BaseObject
         $result .= "Host: $this->host\n";
         $result .= "Sitemap: $this->sitemap";
         
-        $this->createFile($result);
+        $this->newFile->createFile($result);
         
         return $result;
     }
-    public function createFile($text)
-    {
-        $path = \Yii::getAlias('@webroot')."/robots.txt";
-        
-        $file = fopen( $path,"w+");
-        fputs ($file, $text);
-        fclose ($file); 
-    }
+    
 }

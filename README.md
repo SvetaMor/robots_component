@@ -1,30 +1,49 @@
 # robots_component
-В конфигурации:
-'modules' => [
-        'robots' => [
-            'class' => 'app\components\robots\Module',
-            'components'    => [
-                'robotsComponent' => [
-                    'class' => \app\components\robots\RobotsComponent::class,
-                    'userAgent' => [
-                        '*' => [
-                            'Disallow' => [
-                                '/articles',
-                                '/logs',
+
+В конфигурации прописать (пример):
+
+    'container' => [
+        'definitions' => [
+            \app\vendor\svetamor\robots\interfaces\ICreatingFile::class => [
+                'class' => \app\vendor\svetamor\robots\CreatingTxt::class, 
+                'filePath' => '/robots.txt',
+            ], 
+    'modules' => [
+            'robots' => [
+                'class' => '\app\modules\Module',
+                'components'    => [
+                    'robotsComponent' => [
+                        'class' => \app\vendor\svetamor\robots\RobotsComponent::class,
+                        'userAgent' => [
+                            '*' => [
+                                'Disallow' => [
+                                    '/articles',
+                                    '/logs',
+                                ],
+                                'Allow' => [
+                                    //..
+                                ],
                             ],
-                            'Allow' => [
-                                //..
+                            'WebBot' => [
+                                'Disallow' => [
+                                    '/',
+                                ],
                             ],
                         ],
-                        'WebBot' => [
-                            'Disallow' => [
-                                '/',
-                            ],
-                        ],
+                        'host' => 'site.ru',
+                        'sitemap' => 'http://site.ru/sitemap.xml',
                     ],
-                    'host' => 'site.ru',
-                    'sitemap' => 'http://site.ru/sitemap.xml',
                 ],
             ],
         ],
-    ],
+        
+в контроллере:
+
+    $module = \Yii::$app->getModule('robots');
+        
+    $response = \Yii::$app->response;
+    $response->format = \yii\web\Response::FORMAT_RAW;
+    $response->headers->set('Content-Type', 'text/plain');
+        
+    return $module->robotsComponent->render();
+    

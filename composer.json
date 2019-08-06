@@ -1,0 +1,21 @@
+{
+    "name": "svetamor/robots_component",
+    "description": "create a file robots.txt",
+    "type": "yii2-extension",
+    "require": {
+        "yiisoft/yii2": "^2.0"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Svetlana Mor",
+            "email": "acura88@yandex.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "svetamor\\robots\\":"src/"
+   	    }
+    },
+    "minimum-stability": "stable"
+}
