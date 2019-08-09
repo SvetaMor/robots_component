@@ -1,5 +1,5 @@
 <?php
-namespace svetamor\robots\interfaces;
+namespace app\vendor\svetamor\robots\interfaces;
 
 interface ICreatingFile
 {

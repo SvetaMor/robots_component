@@ -1,7 +1,7 @@
 <?php
-namespace svetamor\robots;
+namespace app\vendor\svetamor\robots;
 
-use svetamor\robots\interfaces\ICreatingFile;
+use app\vendor\svetamor\robots\interfaces\ICreatingFile;
 
 class RobotsComponent
 {

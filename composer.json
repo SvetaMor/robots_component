@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "svetamor\\robots\\":"src/"
+            "app\\vendor\\svetamor\\robots\\":"src/"
    	    }
     },
     "minimum-stability": "stable"
