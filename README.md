@@ -7,7 +7,9 @@
             \app\vendor\svetamor\robots\interfaces\ICreatingFile::class => [
                 'class' => \app\vendor\svetamor\robots\CreatingTxt::class, 
                 'filePath' => '/robots.txt',
-            ], 
+            ],
+        ],
+    ],    
     'modules' => [
             'robots' => [
                 'class' => '\app\modules\Module',
