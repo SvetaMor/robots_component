@@ -9,7 +9,7 @@ class CreatingTxt implements ICreatingFile
     
     public function createFile($text)
     {
-        $path = \Yii::getAlias('@webroot').$filePath;
+        $path = \Yii::getAlias('@webroot').$this->filePath;
         
         $file = fopen($path, "w+");
         fputs ($file, $text);
